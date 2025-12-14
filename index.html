@@ -1,23 +1,647 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <title>Home</title>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
-    <!--
-      Need a visual blank slate?
-      Remove all code in `styles.css`!
-    -->
-    <link rel="stylesheet" href="styles.css" />
-    <script type="module" src="script.js"></script>
-  </head>
-  <body>
-    <nav>
-      <a href="/" aria-current="page">Home</a>
-      <a href="/page2.html">Other page</a>
-    </nav>
+  
+    <script type="application/ld+json">
+        {
+          "@context": "https://schema.org",
+          "@type": "MovingService",
+          "name": "안동이사 포장이사 전문업체",
+          "url": "https://yourdomain.com/andong-moving",
+          "areaServed": {
+            "@type": "AdministrativeArea",
+            "name": "경상북도 안동시 전역"
+          },
+          "provider": {
+            "@type": "Organization",
+            "name": "안동 포장이사 비교 플랫폼",
+            "url": "https://yourdomain.com"
+          },
+          "description": "합리적인 안동 포장이사 비용과 투명한 견적을 제공하는 안동이사 전문 플랫폼입니다. 고객님의 소중한 이삿짐을 안전하고 신속하게 안동 전 지역으로 옮겨드립니다.",
+          "hasOfferCatalog": {
+            "@type": "OfferCatalog",
+            "name": "안동이사 서비스 종류",
+            "itemListElement": [
+              {
+                "@type": "Offer",
+                "itemOffered": {
+                  "@type": "Product",
+                  "name": "안동 일반이사"
+                },
+                "price": "200000",
+                "priceCurrency": "KRW"
+              },
+              {
+                "@type": "Offer",
+                "itemOffered": {
+                  "@type": "Product",
+                  "name": "안동 반포장이사"
+                },
+                "price": "350000",
+                "priceCurrency": "KRW"
+              },
+              {
+                "@type": "Offer",
+                "itemOffered": {
+                  "@type": "Product",
+                  "name": "안동 포장이사"
+                },
+                "price": "500000",
+                "priceCurrency": "KRW"
+              }
+            ]
+          }
+        }
+    </script>
+
+    <style>
+        /* 기본 설정 및 폰트 */
+        body {
+            font-family: "Noto Sans KR", sans-serif;
+            margin: 0;
+            padding: 0;
+            line-height: 1.7; /* 가독성 개선 */
+            background-color: #f7f9fc; /* 부드러운 배경색 */
+            color: #333;
+            word-break: keep-all; 
+        }
+        /* 헤더 스타일 (진한 파란색 계열) */
+        header {
+            background-color: #003366; 
+            color: white;
+            padding: 3rem 1rem 2rem;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+        }
+        header h1 {
+            font-size: 2.8rem;
+            font-weight: 700;
+            margin: 0.5rem 0 0.8rem;
+            letter-spacing: -1px;
+        }
+        header p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            font-weight: 300;
+        }
+        /* 네비게이션 스타일 */
+        nav ul {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin: 0;
+        }
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease, background-color 0.3s ease;
+            font-size: 1.05rem;
+            padding: 8px 15px;
+            border-radius: 6px;
+        }
+        nav a:hover {
+            color: #003366;
+            background-color: #e6f0ff; /* 밝은 배경 */
+            transform: translateY(-1px);
+        }
+        /* 메인 컨텐츠 영역 */
+        main {
+            max-width: 1100px;
+            margin: 3rem auto;
+            padding: 0 2rem;
+            background-color: white;
+            box-shadow: 0 0 20px rgba(0,0,0,0.05);
+            border-radius: 15px;
+        }
+        /* 제목 스타일 */
+        h1, h2 {
+            color: #004d99; /* 메인 색상 */
+            font-weight: 700;
+            margin-top: 3rem;
+            padding-top: 1.5rem;
+            border-bottom: 3px solid #e6f0ff;
+        }
+        h2 {
+            font-size: 2.2rem;
+            letter-spacing: -0.5px;
+        }
+        h3 {
+            color: #0066cc;
+            font-size: 1.7rem;
+            margin-top: 2rem;
+            border-left: 5px solid #0066cc;
+            padding-left: 15px;
+            font-weight: 600;
+        }
+        p {
+            text-align: justify;
+            margin-bottom: 1.5rem;
+            font-size: 1.05rem;
+        }
+        /* 테이블 스타일 */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 2.5rem 0;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        th, td {
+            padding: 1.2rem;
+            border: 1px solid #e0e0e0;
+            text-align: center;
+            font-size: 1rem;
+        }
+        th {
+            background-color: #0066cc;
+            color: white;
+            font-weight: 700;
+            font-size: 1.15rem;
+        }
+        tr:nth-child(even) {
+            background-color: #fcfdff;
+        }
+        /* FAQ 아코디언 스타일 */
+        dl dt {
+            font-weight: 700;
+            margin-top: 1.5rem;
+            cursor: pointer;
+            color: #333;
+            background-color: #f0f6ff;
+            padding: 1.2rem;
+            border-left: 6px solid #ff9900; /* 포인트 색상 */
+            transition: background-color 0.3s ease;
+            border-radius: 4px;
+        }
+        dl dt:hover {
+            background-color: #e6efff;
+        }
+        dl dt strong {
+            color: #003366;
+        }
+        dl dd {
+            margin: 0.5rem 0 1.5rem 0;
+            padding: 1rem 1rem 1rem 2rem;
+            border-left: 2px dashed #ccc;
+            background-color: #ffffff;
+            display: none;
+            font-size: 1rem;
+        }
+        dl dt.active + dd {
+            display: block;
+        }
+        /* CTA 버튼 스타일 (주황색 계열) */
+        .cta-button {
+            display: block;
+            width: fit-content;
+            margin: 3rem auto 3.5rem;
+            background-color: #ff9900;
+            color: white;
+            font-weight: 700;
+            padding: 1.2rem 4rem;
+            border-radius: 50px;
+            text-decoration: none;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            text-align: center;
+            font-size: 1.3rem;
+            box-shadow: 0 6px 12px rgba(255,153,0,0.3);
+        }
+        .cta-button:hover {
+            background-color: #e68a00;
+            transform: translateY(-3px);
+        }
+        /* 키워드 태그 스타일 */
+        .keyword-tags {
+            margin: 3rem 0;
+            padding: 1.5rem;
+            border-radius: 10px;
+            background-color: #f0f7ff;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+            border: 1px solid #d0e0ff;
+        }
+        .keyword-tags a {
+            background-color: #e0f0ff;
+            color: #0066cc;
+            padding: 8px 18px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+            font-weight: 500;
+        }
+        .keyword-tags a:hover {
+            background-color: #b3d1ff;
+            color: #003366;
+        }
+        /* 외부 링크 스타일 */
+        .external-link {
+            display: block;
+            color: #0066cc;
+            font-weight: 500;
+            margin-top: 0.5rem;
+            text-decoration: underline;
+            font-size: 0.95rem;
+        }
+        /* 폼 영역 스타일 */
+        .form-container {
+            padding: 2.5rem;
+            background-color: #f7f9fc;
+            border: 1px solid #e0e0e0;
+            border-radius: 10px;
+            margin-bottom: 3rem;
+        }
+        .form-container label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #003366;
+        }
+        .form-container input[type="text"], 
+        .form-container input[type="tel"], 
+        .form-container input[type="date"], 
+        .form-container select {
+            width: calc(100% - 22px);
+            padding: 12px 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: content-box;
+            font-size: 1rem;
+        }
+        .form-container button {
+            background-color: #009933;
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1.1rem;
+            font-weight: 700;
+            transition: background-color 0.3s;
+            width: 100%;
+        }
+        .form-container button:hover {
+            background-color: #007722;
+        }
+        .input-group {
+            display: flex;
+            gap: 20px;
+        }
+        .input-group > div {
+            flex: 1;
+        }
+        /* 푸터 스타일 */
+        footer {
+            text-align: center;
+            padding: 2.5rem;
+            font-size: 0.95rem;
+            color: #666;
+            background-color: #e6efff;
+            margin-top: 4rem;
+            border-top: 1px solid #d0e0ff;
+        }
+
+        /* 반응형 디자인 */
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2rem;
+            }
+            h2 {
+                font-size: 1.8rem;
+            }
+            h3 {
+                font-size: 1.4rem;
+            }
+            nav ul {
+                flex-direction: column;
+                gap: 10px;
+            }
+            nav a {
+                padding: 5px 10px;
+            }
+            main {
+                margin: 1.5rem auto;
+                padding: 0 1rem;
+            }
+            .input-group {
+                flex-direction: column;
+                gap: 0;
+            }
+            .form-container input[type="text"], 
+            .form-container input[type="tel"], 
+            .form-container input[type="date"], 
+            .form-container select {
+                width: 100%;
+                box-sizing: border-box;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>안동이사 포장이사 비용 비교 | 2026년 이사 견적 전문가</h1>
+        <p>경상북도 **안동 포장이사**를 찾는 가장 합리적이고 신뢰도 높은 방법. 지금 바로 **안동 이삿짐센터** 가격을 투명하게 비교해 보세요.</p>
+        <nav>
+            <ul>
+                <li><a href="#서비스종류">이사 서비스 종류</a></li>
+                <li><a href="#가격안내">안동이사 비용 안내</a></li>
+                <li><a href="#이사절차">이사 진행 절차</a></li>
+                <li><a href="#전문정보">안동 이사 전문 정보</a></li>
+                <li><a href="#예약문의">무료 견적 신청</a></li>
+            </ul>
+        </nav>
+    </header>
+
     <main>
-      <h1>Home page</h1>
+        <section id="서비스종류">
+            <h2>안동이사 포장이사 서비스 개요</h2>
+            <p>저희는 **안동이사** 전문 매칭 플랫폼으로, 고객님의 소중한 이삿짐을 **안동**에서 경북, 나아가 전국 어디로든 안전하게 운송해 드립니다. **안동 포장이사**는 단순한 짐 운반이 아닌, 고객님의 새로운 시작을 위한 전문적인 토탈 서비스입니다. **안동 이삿짐센터** 선택의 기준이 되는 투명한 견적 시스템과 검증된 협력 업체 네트워크를 통해 최고의 만족도를 약속드립니다. 특히 2026년 이사 시장의 트렌드에 맞춰 **안동** 지역 특성에 최적화된 맞춤형 서비스를 제공합니다.</p>
+            <p>**안동**은 유서 깊은 지역 특성상 빌라, 아파트(옥동, 용상동, 송현동), 단독 주택 등 다양한 주거 형태가 혼재되어 있습니다. 각 이사 환경에 맞는 최적의 장비(사다리차, 스카이차 등)와 전문 인력을 투입하여, **안동 포장이사 비용**의 거품을 빼고 서비스의 질을 높였습니다. **안동 반포장이사**, **안동 원룸이사**, **안동 사무실이사** 등 고객의 필요와 예산에 따라 선택 가능한 다양한 옵션을 제공합니다.</p>
+
+            <div class="keyword-tags" aria-label="안동이사 연관 검색 키워드">
+                <a href="#가격안내">안동 포장이사 비용</a>
+                <a href="#이사절차">안동 이사 견적</a>
+                <a href="#서비스종류">안동 원룸이사</a>
+                <a href="#전문정보">안동 이삿짐센터 추천</a>
+                <a href="#서비스종류">안동 반포장이사</a>
+                <a href="#가격안내">안동 이사 잘하는 곳</a>
+                <a href="#가격안내">안동 이삿짐센터 가격</a>
+                <a href="#서비스종류">안동 사무실이사</a>
+                <a href="#전문정보">안동 손없는날 이사</a>
+                <a href="#이사절차">안동 이사 체크리스트</a>
+                <a href="#서비스종류">안동 아파트 이사</a>
+                <a href="#서비스종류">안동 빌라 이사</a>
+                <a href="#서비스종류">안동 가구 운반</a>
+                <a href="#전문정보">안동 하회마을 이사</a>
+                <a href="#전문정보">안동 옥동 이사</a>
+                <a href="#전문정보">안동 용상동 포장이사</a>
+                <a href="#전문정보">안동 송현동 이삿짐</a>
+            </div>
+        </section>
+
+        <hr>
+
+        <section id="가격안내">
+            <h2>합리적인 안동이사 비용 안내 및 투명 견적 기준</h2>
+            <p>**안동 포장이사 비용**은 고객님의 이사 조건에 따라 매우 유동적입니다. 저희는 투명하고 합리적인 **안동 이사 비용**을 산출하기 위해 다음 요인들을 종합적으로 분석합니다. 아래 표는 서비스별 기본 시작가이며, 정확한 비용은 **안동** 지역 전문 담당자의 **무료 방문 견적**을 통해 확정됩니다.</p>
+            
+            <table>
+                <thead>
+                    <tr>
+                        <th>서비스 종류</th>
+                        <th>안동 기본 이사 비용 (시작가, 2026년 기준)</th>
+                        <th>주요 서비스 특징</th>
+                        <th>주요 고객층</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>안동 일반이사</strong></td>
+                        <td><strong>200,000원 ~</strong></td>
+                        <td>고객이 직접 포장/정리, 운송만 업체 담당. **안동 원룸이사** 등 소규모 이사에 경제적.</td>
+                        <td>1인 가구, 원룸/오피스텔 거주자</td>
+                    </tr>
+                    <tr>
+                        <td><strong>안동 반포장이사</strong></td>
+                        <td><strong>350,000원 ~</strong></td>
+                        <td>업체가 포장/운송/정리(큰 짐), 고객이 잔짐 포장/정리. **안동** 지역 소형 가구에 합리적.</td>
+                        <td>2인 가구, 10~15평대 아파트/빌라</td>
+                    </tr>
+                    <tr>
+                        <td><strong>안동 포장이사</strong></td>
+                        <td><strong>500,000원 ~</strong></td>
+                        <td>모든 포장, 운송, 배치, 정리까지 업체 책임. 가장 편리한 프리미엄 **안동 이사 서비스**.</td>
+                        <td>가족 단위, 20평대 이상 아파트 거주자</td>
+                    </tr>
+                    <tr>
+                        <td><strong>안동 사무실이사</strong></td>
+                        <td><strong>700,000원 ~ (별도 문의)</strong></td>
+                        <td>사무용 집기, 서버, 중요 서류 등 전문 포장 및 체계적인 이전 서비스.</td>
+                        <td>기업, 관공서, 소규모 오피스</td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <h3>안동이사 비용에 영향을 미치는 주요 요인 (2026년 적용)</h3>
+            <ol>
+                <li><strong>이삿짐의 양 및 부피:</strong> 짐이 많을수록 더 많은 작업 인원과 큰 용량의 운송 차량(트럭)이 필요해지므로 비용이 증가합니다. (예: 1톤, 2.5톤, 5톤 트럭 기준)</li>
+                <li><strong>이사 거리:</strong> 출발지(안동 내 동지역/읍면지역)와 도착지(전국) 간의 거리가 멀어질수록 유류비, 통행료, 운송 시간이 증가하여 **안동이사 비용**이 상승합니다.</li>
+                <li><strong>작업 조건 (층수 및 장비):</strong>
+                    <ul>
+                        <li>출발지와 도착지 모두 **안동** 지역 아파트의 경우, 층수가 높아질수록 사다리차 사용이 필수적이며 이에 따른 추가 비용이 발생합니다.</li>
+                        <li>**안동** 구도심 지역의 좁은 골목이나 계단 작업 시 인력 추가 및 난이도 할증이 붙을 수 있습니다.</li>
+                    </ul>
+                </li>
+                <li><strong>이사 날짜:</strong>
+                    <ul>
+                        <li>**손없는날 이사** (음력 9, 10, 19, 20, 29, 30일)는 수요 폭증으로 인해 **안동 포장이사 비용**이 평소보다 10~20% 가량 상승하는 경향이 있습니다. 2026년 주요 손없는날을 미리 확인하여 예약하는 것이 중요합니다.</li>
+                        <li>주말, 월말, 이사 성수기(봄/가을) 역시 비용 상승 요인입니다.</li>
+                    </ul>
+                </li>
+                <li><strong>추가 서비스:</strong> 에어컨 탈부착, 벽걸이 TV 설치, 피아노/대형 금고 운반, 입주 청소 등 특수 작업 요청 시 별도 비용이 추가됩니다.</li>
+            </ol>
+
+            <a href="#예약문의" class="cta-button" aria-label="안동 포장이사 비용 무료 견적 받기">지금 바로 안동이사 무료 견적 받기</a>
+        </section>
+
+        <hr>
+
+        <section id="이사절차">
+            <h2>안동 포장이사 진행 절차 (계약부터 마무리까지)</h2>
+            <p>성공적인 **안동 이사**는 체계적인 절차에서 시작됩니다. 저희 **안동 이삿짐센터** 제휴 업체들은 다음 4단계 프로세스를 통해 고객 만족을 극대화합니다.</p>
+
+            <h3>1. 투명한 견적 상담 및 현장 방문 견적</h3>
+            <p>**안동이사**를 위한 첫 단계는 정확한 견적 산출입니다. 온라인 또는 전화로 이사 일자, 출발/도착지 주소, 짐의 양(평수) 등의 정보를 알려주시면 1차 상담이 이루어집니다. 이후, 전문 견적 담당자가 고객님의 댁을 직접 방문합니다. 안동의 지리적 특성(예: 좁은 길, 층수)을 고려하여 사다리차 진입 가능 여부, 엘리베이터 유무, 특수 물품 유무 등을 상세히 파악합니다. 이 과정에서 산출된 **안동 포장이사 비용**과 서비스 내용을 명확히 기재한 **서면 견적서**를 제공합니다. 이 견적서는 **추가 비용** 발생을 방지하는 법적 근거가 됩니다.</p>
+            
+            <h3>2. 계약 체결 및 이사 준비 (체크리스트 제공)</h3>
+            <p>견적 내용에 만족하시면 정식 계약을 체결합니다. 계약서에는 반드시 **피해 배상 규정**, **추가 요금 면책 조항**, **작업 인원 구성**, **차량 종류** 등을 명시해야 합니다. 계약 후, **안동 이사 체크리스트**를 제공하여 고객님께서 미리 준비해야 할 사항(귀중품 분리 보관, 냉장/냉동식품 처리, 도시가스/인터넷 해지 등)을 안내해 드립니다. 특히 **안동** 인근 지역으로의 장거리 이사 시에는 전입신고 및 관련 서류 준비에 대한 조언을 상세히 제공합니다.</p>
+
+            <h3>3. 이사 당일 작업 진행 (안전 및 신속)</h3>
+            <p>약속된 시간에 전문 이사 팀(팀장 포함)이 방문하여 작업을 시작합니다. 이사 팀은 짐의 종류별(의류, 주방용품, 가전, 가구)로 맞춤형 포장재를 사용하여 꼼꼼하게 포장합니다. 안동의 오래된 가옥이나 전통 가구의 경우, 특별 보호 포장으로 파손을 예방합니다. 대형 가구와 가전은 에어캡과 전용 커버로 이중 포장하며, 모든 박스에는 내용물을 표시하여 도착지에서의 정리 효율을 높입니다. 짐을 트럭에 적재한 후, 출발지 청소 및 최종 점검을 진행합니다. 도착지에서는 고객님이 원하는 가구 배치도를 기반으로 신속하게 짐을 하역하고 정리합니다. 주방 및 잔짐 정리는 물론, 가전제품 작동 여부까지 확인합니다.</p>
+            
+            <h3>4. 최종 확인 및 사후 관리</h3>
+            <p>이사 및 정리가 완료되면, 이사 팀장과 고객이 함께 모든 짐의 배치 상태, 파손 여부, 분실 여부를 확인하는 '검수 과정'을 거칩니다. 간단한 마무리 청소(바닥, 싱크대, 냉장고 내부 등)가 제공됩니다. 만약 이사 과정 중 피해가 발생했다면, 현장에서 즉시 고지하고 사진 등 증거를 확보해야 합니다. 저희는 공정거래위원회 고시 **이사화물 표준약관**에 따라 정당한 보상을 진행하며, 최대 7일 이내에 신고하시면 처리됩니다. 안동 지역 고객 만족을 위해 신속하고 책임 있는 사후 관리를 약속드립니다.</p>
+            <a href="https://www.law.go.kr/lsInfoP.do?lsiSeq=230635&efYd=20200805#0000" target="_blank" rel="noopener noreferrer" class="external-link">공정거래위원회 이사화물 표준약관 확인 (법제처)</a>
+        </section>
+
+        <hr>
+
+        <section id="전문정보">
+            <h2>안동이사 성공을 위한 전문 정보 및 노하우</h2>
+            <p>**안동 포장이사**를 계획할 때, 비용 절약과 만족도를 높이는 핵심 노하우를 알아두면 좋습니다. 특히 **안동** 지역 특성을 이해하는 것이 중요합니다.</p>
+
+            <h3>1. 안동 지역별 이사 특성 분석 (옥동, 용상동, 송현동, 풍산읍)</h3>
+            <p>**안동**은 크게 신도시 지역과 구도심, 그리고 읍면 지역으로 나뉩니다. 지역별 특성을 이해하면 **안동 이사** 계획 수립에 큰 도움이 됩니다. **옥동 포장이사**는 신축 아파트 단지가 많아 엘리베이터나 사다리차 사용이 비교적 용이하며, 이사 수요가 많아 **안동 이삿짐센터**의 경쟁이 치열한 지역입니다. **용상동 이사**와 **송현동 포장이사**는 오래된 빌라와 주택이 혼재되어 있어, 좁은 골목이나 계단 작업에 대한 사전 견적이 매우 중요합니다. **풍산읍 이사**나 **일직면 이사**, **와룡면 이사**와 같은 외곽 지역은 이동 거리에 따른 추가 비용, 그리고 차량 진입 조건 등을 꼼꼼히 확인해야 합니다. 특히 유네스코 세계유산으로 지정된 **하회마을 이사**와 같은 특수 지역은 문화재 보호 규정 및 접근 제한 구역을 사전에 확인해야 하는 경우가 있습니다.</p>
+            <p>이러한 지역별 특성을 파악하기 위해 **안동** 지역 전문 견적 담당자와의 소통이 필수적이며, 이는 **안동 포장이사 비용**의 정확도를 높이는 핵심입니다.</p>
+            <a href="https://www.andong.go.kr/portal/main/main.do" target="_blank" rel="noopener noreferrer" class="external-link">안동시청 공식 홈페이지 바로가기</a>
+
+            <h3>2. 2026년 이사 동향 및 비용 절약 전략</h3>
+            <p>2026년 **안동** 지역 이사 동향을 보면, 경북도청 이전 신도시(**예천 이사** 포함) 인근으로의 인구 유입 및 안동시 내부 순환 이사가 활발할 것으로 예상됩니다. 이사 수요 집중 시기인 봄(3~5월)과 가을(9~11월)을 피하고, 평일 오전 시간대를 이용하면 **안동이사 비용**을 효과적으로 절약할 수 있습니다. 특히 **손없는날**이 아닌 날짜를 선택하면, 성수기 대비 약 10% 내외의 비용 절감 효과를 기대할 수 있습니다. 짐의 부피를 줄이는 것도 중요합니다. 이사 전에 불필요한 가구나 잡동사니를 정리(중고 판매, 기부 등)하면 짐의 양이 줄어들어 운송 차량 크기가 줄고, 그만큼 **안동 포장이사 비용**이 절약됩니다.</p>
+            
+            <h3>3. 믿을 수 있는 안동 이삿짐센터 선택 가이드</h3>
+            <ol>
+                <li>**관허업체 여부 확인:** 이사 업체가 관청으로부터 정식 허가를 받은 관허업체인지, 그리고 적재물 배상 책임 보험에 가입되어 있는지 반드시 확인해야 합니다. 무허가 업체는 피해 발생 시 보상이 어렵습니다.</li>
+                <li>**서면 계약서 필수:** 구두 계약은 절대 피하고, **안동이사 비용**, 작업 인원, 차량 종류, 피해보상 규정 등이 명확하게 명시된 계약서를 작성해야 합니다.</li>
+                <li>**방문 견적 비교:** 최소 2~3곳의 **안동 이삿짐센터**로부터 방문 견적을 받아 서비스의 질과 비용을 비교하는 것이 가장 확실한 방법입니다.</li>
+                <li>**후기 및 평판 확인:** **안동** 지역 커뮤니티나 공식 플랫폼의 고객 후기를 참고하여 업체의 서비스 품질과 신뢰도를 파악합니다.</li>
+            </ol>
+            <a href="https://www.koca.or.kr/main.do" target="_blank" rel="noopener noreferrer" class="external-link">한국소비자원 피해 구제 정보 확인</a>
+            <a href="https://data.ftc.go.kr/portal/main/main.do" target="_blank" rel="noopener noreferrer" class="external-link">공정거래위원회 공정거래포털 접속</a>
+            <a href="https://www.koba.or.kr/" target="_blank" rel="noopener noreferrer" class="external-link">한국통운협회 (가상 기관) 업체 확인</a>
+
+
+            <hr>
+            <h3>안동 이사 관련 상세 키워드 확장 및 지역 정보</h3>
+            <p>성공적인 **안동 포장이사**를 위해서는 안동 전역의 지리적, 생활적 특성을 고려해야 합니다. 저희는 **안동** 지역에 특화된 정보를 바탕으로 고객 만족도를 높이고 있습니다. **안동** 시내 중심지인 **옥동 포장이사**는 신도시급의 편리한 접근성을 갖추고 있지만, 이사 차량 주차 공간 확보가 중요합니다. 반면 **용상동**이나 **송현동**과 같은 구도심 지역은 좁은 진입로로 인해 사다리차 배치나 이삿짐 운반 경로에 대한 면밀한 검토가 필요합니다. </p>
+            <p>특히 **안동**의 주요 아파트 단지인 **안동 센트럴자이 이사**, **안동 옥동 부영아파트 이사**, **안동 송현 이안 아파트 이사** 등의 경우, 각 아파트 관리 규정에 맞는 이사 시간 준수 및 엘리베이터 사용료, 이사 동선 확보 등이 중요합니다. **안동 아파트 이사**는 대개 오전 9시부터 오후 5시 사이에 집중되며, 사전에 관리사무소에 예약하는 것이 필수입니다. 또한 **안동 빌라 이사**나 **안동 주택 이사**는 계단 작업이 포함되는 경우가 많으므로, 견적 시 인력 추가 여부를 명확히 확인해야 **안동이사 당일 추가 비용** 발생을 막을 수 있습니다.</p>
+            <p>**안동**의 행정 구역별 키워드를 살펴보면, **풍산읍 포장이사**, **와룡면 이삿짐센터**, **일직면 이사**, **남선면 이사**, **임동면 이사**, **예안면 이사**, **도산면 이사**, **녹전면 이사**와 같은 읍면 지역은 시내권과의 거리가 있어 **안동 포장이사 비용**에 운송 거리가 크게 반영됩니다. 반면 **서후면 이사**, **북후면 이사**, **남후면 이사** 등은 비교적 시내와 인접하여 교통 접근성이 좋습니다. 특히 **서후면**에는 **안동 과학대학교**가 위치해 있어 학기 초 **안동 원룸이사** 수요가 집중되는 시기입니다.</p>
+            <p>이사 서비스 종류별로도 세분화된 맞춤 서비스가 제공됩니다. 예를 들어, **안동 5톤 포장이사**는 일반적인 가정 이사에 해당하며, **안동 2.5톤 포장이사**는 소형 가구나 짐이 적은 가구에 적합합니다. **안동 용달이사**나 **안동 1톤 이사**는 주로 **안동 원룸이사**나 간편 이사를 원하는 고객들이 많이 찾습니다. **안동 포장이사 가격**은 이 톤수에 따라 기본 비용이 크게 달라집니다.</p>
+            <p>추가적으로, **안동** 지역은 유교 문화가 깊은 곳으로 알려져 있어 **손없는날**에 대한 선호도가 높은 편입니다. 2026년 **안동 손없는날 이사**를 계획하는 고객님들은 최소 2~3개월 전에 **안동 이삿짐센터**를 예약해야 원하는 시간과 날짜에 이사를 진행할 수 있습니다. **안동**의 구체적인 동별 키워드로는 **정하동 이사**, **태화동 이사**, **안기동 이사**, **명륜동 이사**, **운안동 이사**, **법상동 이사**, **당북동 이사**, **평화동 이사**, **서부동 이사**, **광석동 이사** 등이 있으며, 각 동별로 주거 형태와 이사 환경이 상이합니다. 특히 **강남동 포장이사**와 같이 특정 구역은 다세대 주택이 밀집되어 있어 주차 문제와 사다리차 공간 확보가 난이도가 높습니다.</p>
+            <p>이사 관련 특수 키워드로는 **안동 해외이사**, **안동 보관이사** (리모델링, 장기 출장 시 유용), **안동 관공서 이전**, **안동 학교 이전** 등도 전문적으로 취급합니다. **안동 보관이사**의 경우, 안전하고 습도 조절이 가능한 전문 창고에서 짐을 보관하며, 보관 기간과 짐의 양에 따라 비용이 산정됩니다. **안동** 지역은 습도가 높은 여름철이 있기 때문에, **보관이사** 시 짐의 상태 유지를 위한 방습/방충 처리가 매우 중요합니다. </p>
+            <p>고객 만족도 측면에서, **안동 이삿짐센터 후기**를 살펴보면, **안동** 지역 업체들은 신속함보다는 꼼꼼함과 친절도를 높이 평가받고 있습니다. 저희는 이러한 고객 피드백을 반영하여 제휴 업체의 서비스 품질을 지속적으로 관리하고 있습니다. **안동 포장이사 전문업체**로서, 단순 운반을 넘어 가구 재배치, 스팀 청소 서비스(옵션), 피톤치드 서비스(옵션) 등 부가적인 서비스의 질을 높이는 데 주력하고 있습니다.</p>
+            <p>**안동**은 전통과 현대가 공존하는 도시인 만큼, **안동시**의 주요 랜드마크인 **월영교** 인근이나 **안동댐** 주변으로 이사를 오는 경우 자연 환경이 쾌적하다는 장점이 있습니다. 반면, 이사 차량 운행 시 관광객 및 차량 통행에 방해되지 않도록 시간 조율 및 사전 신고가 필요합니다. </p>
+            <p>**안동 이사**를 결정하는 과정에서 **안동 이사견적 비교**는 필수적입니다. 저희 플랫폼은 투명하게 비교할 수 있도록 각 업체의 견적과 서비스 내역을 명확하게 제시합니다. **안동 이삿짐센터 가격**의 평균적인 수준을 파악하고, 최저가보다는 합리적인 가격과 높은 서비스 품질을 갖춘 업체를 선택하는 것이 장기적으로 만족도를 높이는 길입니다. 예를 들어, 짐 파손 시 보험 처리가 확실한 **안동 이사 전문업체**를 선택하는 것이 중요합니다. **안동** 지역에서 믿고 맡길 수 있는 **안동 이사 잘하는 곳**을 찾는다면, 저희 플랫폼이 최적의 솔루션을 제공해 드릴 것입니다. **안동시**의 주요 생활권인 **옥동**을 중심으로 **태화동**, **송현동** 등지에서 이사 계획을 세우는 분들께 가장 최적화된 **안동 포장이사 견적**을 제안해 드립니다.</p>
+            <p>결론적으로, **안동이사**는 짐의 양, 거리, 날짜, 지역 특성(구도심/신도심), 그리고 업체 신뢰도 등 다양한 요소를 종합적으로 고려해야 하는 복잡한 작업입니다. 저희 플랫폼은 이 모든 요소를 분석하여 고객님께 가장 유리한 **안동 포장이사 비용**과 최상의 서비스를 제공하기 위해 노력합니다.</p>
+        </section>
+
+        <hr>
+        
+        <section id="자주묻는질문">
+            <h2>자주 묻는 질문 (FAQ) - 안동이사 편</h2>
+            <dl>
+                <dt tabindex="0" aria-expanded="false" class="active"><strong>Q. 안동 포장이사 견적은 어떻게 받나요?</strong></dt>
+                <dd>저희 **안동이사** 전문 플랫폼 홈페이지의 ‘무료 견적 신청’ 버튼을 통해 간편하게 신청하실 수 있습니다. 고객님의 정보를 입력하시면 **안동** 지역 전문 견적 담당자가 직접 연락 드려 무료 방문 견적 일정을 조율합니다. 정확한 **안동 포장이사 비용**은 방문 견적을 통해서만 확정됩니다.</dd>
+
+                <dt tabindex="0" aria-expanded="false"><strong>Q. 이사 중 짐이 파손되거나 분실되면 보상은 어떻게 되나요?</strong></dt>
+                <dd>저희 제휴 **안동 이삿짐센터**들은 모두 법적으로 요구되는 **적재물 배상 책임 보험**에 가입되어 있습니다. 이사 중 발생한 파손 및 분실에 대해 공정거래위원회 **이사화물 표준약관**에 따라 규정에 맞게 보상해 드립니다. 파손 발견 시 현장에서 즉시 이사 팀장에게 고지하고 증거 사진을 남기시는 것이 가장 중요합니다. 이사 후 발견 시에는 7일 이내에 해당 업체에 통보하셔야 합니다.</dd>
+
+                <dt tabindex="0" aria-expanded="false"><strong>Q. 안동이사 당일 추가 비용이 발생할 수 있나요?</strong></dt>
+                <dd>원칙적으로 **안동** 전문 견적 담당자와의 방문 견적 및 계약서에 명시된 내용 외에는 **추가 비용**이 발생하지 않습니다. 하지만 견적 시 고지되지 않은 이삿짐의 현저한 증가, 사다리차 사용이 예상치 않게 불가능한 경우, 엘리베이터 사용료 미지급 등의 특수 상황이 발생할 경우에 한하여 추가 비용이 청구될 수 있습니다. 이를 방지하기 위해 방문 견적 시 모든 상황을 상세히 알려주셔야 합니다.</dd>
+                
+                <dt tabindex="0" aria-expanded="false"><strong>Q. 안동 원룸이사 또는 소형 이사도 가능한가요?</strong></dt>
+                <dd>네, 물론입니다. **안동이사** 전문 플랫폼은 **안동 원룸이사** (1톤 이사), **안동 반포장이사** 등 소형 이사부터 **안동 사무실이사**, 대규모 아파트 이사까지 모든 규모의 서비스를 제공합니다. 고객님의 짐의 양과 예산에 맞는 맞춤형 서비스를 제공합니다. **안동대 원룸이사** 등 대학가 주변 소형 이사 수요에도 전문적으로 대응하고 있습니다.</dd>
+
+                <dt tabindex="0" aria-expanded="false"><strong>Q. 이사 서비스에 청소도 포함되나요?</strong></dt>
+                <dd>**안동 포장이사** 서비스에는 짐 정리 완료 후 간단한 마무리 청소(바닥, 주방, 욕실 등)가 포함됩니다. 이는 이사로 인해 발생한 먼지나 흔적을 제거하는 수준이며, 전문적인 **안동 입주 청소**나 **안동 이사 청소**는 별도의 전문 서비스로 진행됩니다.</dd>
+                
+                <dt tabindex="0" aria-expanded="false"><strong>Q. 안동 손없는날 이사 비용은 왜 비싼가요?</strong></dt>
+                <dd>이사 수요가 특정 날짜(음력 9, 10, 19, 20, 29, 30일)에 집중되어 **안동 이삿짐센터**의 작업 팀과 차량 배차가 매우 어려워지기 때문입니다. 공급은 한정적인데 수요가 폭발적으로 증가하므로, 이사 업체들이 비용을 상향 조정하게 됩니다. **안동이사 비용** 절약을 원하신다면 **손없는날**을 피하고 평일을 이용하시는 것을 추천드립니다.</dd>
+            </dl>
+        </section>
+        
+        <hr>
+
+        <section id="예약문의">
+            <h2>안동 포장이사 무료 견적 및 예약 신청 (체류 시간 최적화)</h2>
+            <p>지금 바로 상세 견적 신청 양식을 통해 **안동 포장이사 비용**을 확인하세요. 입력란이 많을수록 저희가 고객님의 이사 환경을 더 정확하게 파악하여 최적의 **안동 이삿짐센터**를 매칭해 드릴 수 있으며, 결과적으로 고객님의 체류 시간이 길어지고 정확한 견적을 받아보실 수 있습니다.</p>
+            
+            <div class="form-container">
+                <form action="submit_andong_quote.php" method="POST">
+                    <div class="input-group">
+                        <div>
+                            <label for="name">성함</label>
+                            <input type="text" id="name" name="name" required placeholder="예: 홍길동">
+                        </div>
+                        <div>
+                            <label for="tel">연락처</label>
+                            <input type="tel" id="tel" name="tel" required placeholder="예: 010-1234-5678">
+                        </div>
+                    </div>
+
+                    <div class="input-group">
+                        <div>
+                            <label for="move_date">희망 이사 날짜 (2026년 기준)</label>
+                            <input type="date" id="move_date" name="move_date" required min="2026-01-01" max="2027-12-31" value="2026-03-15">
+                        </div>
+                        <div>
+                            <label for="move_type">이사 서비스 종류</label>
+                            <select id="move_type" name="move_type" required>
+                                <option value="">선택하세요</option>
+                                <option value="포장이사">안동 포장이사 (최고급)</option>
+                                <option value="반포장이사">안동 반포장이사 (합리적)</option>
+                                <option value="일반이사">안동 일반이사 (운송 중심)</option>
+                                <option value="원룸이사">안동 원룸이사/소형 이사</option>
+                                <option value="사무실이사">안동 사무실이사</option>
+                                <option value="보관이사">안동 보관이사</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="input-group">
+                        <div>
+                            <label for="from_address">출발지 주소 (안동시 동/읍/면 단위까지)</label>
+                            <input type="text" id="from_address" name="from_address" required placeholder="예: 안동시 옥동 00아파트">
+                        </div>
+                        <div>
+                            <label for="to_address">도착지 주소 (도/시 단위까지)</label>
+                            <input type="text" id="to_address" name="to_address" required placeholder="예: 안동시 용상동 00빌라 또는 서울특별시 강남구">
+                        </div>
+                    </div>
+                    
+                    <div class="input-group">
+                        <div>
+                            <label for="from_floor">출발지 층수 (계단/엘리베이터/사다리차 예상)</label>
+                            <input type="text" id="from_floor" name="from_floor" required placeholder="예: 아파트 15층 / 빌라 3층 계단">
+                        </div>
+                        <div>
+                            <label for="to_floor">도착지 층수 (계단/엘리베이터/사다리차 예상)</label>
+                            <input type="text" id="to_floor" name="to_floor" required placeholder="예: 주택 1층 / 아파트 7층 엘리베이터">
+                        </div>
+                    </div>
+
+                    <div class="input-group">
+                        <div>
+                            <label for="room_size">이사 짐 규모 (평수 또는 톤수)</label>
+                            <select id="room_size" name="room_size" required>
+                                <option value="">선택하세요</option>
+                                <option value="1톤">1톤 이하 (원룸)</option>
+                                <option value="2.5톤">2.5톤 (소형 아파트/빌라)</option>
+                                <option value="5톤">5톤 (일반 가정집)</option>
+                                <option value="7.5톤">7.5톤 이상 (대형 이사)</option>
+                                <option value="사무실">사무실/기업 (별도 협의)</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label for="special_items">특수 짐 또는 추가 요청 사항 (에어컨, 피아노, 청소 등)</label>
+                            <input type="text" id="special_items" name="special_items" placeholder="예: 벽걸이 에어컨 탈부착, 피아노 운반, 입주청소 문의">
+                        </div>
+                    </div>
+
+                    <button type="submit" aria-label="안동이사 무료 견적 요청하기">안동 포장이사 무료 견적 요청</button>
+                    <p style="text-align: center; font-size: 0.9rem; color: #555; margin-top: 15px;">**입력하신 정보는 안동 지역 전문 이사업체 견적 산출 용도로만 사용되며, 개인정보는 철저히 보호됩니다.</p>
+                </form>
+            </div>
+            
+            <a href="mailto:contact@yourdomain.com" class="cta-button" style="margin-top: 0;" aria-label="이메일로 안동이사 견적 문의하기">이메일로 간편 문의하기</a>
+            <p>저희 **안동이사** 전문 플랫폼은 고객님의 새로운 출발을 응원하며, 언제나 최고의 서비스로 보답하겠습니다.</p>
+        </section>
+        
     </main>
-  </body>
+
+    <footer>
+        <p>&copy; 2026 안동이사 포장이사 전문 플랫폼. All Rights Reserved. | 안동 전 지역 서비스 가능.</p>
+        <p>문의 전화: 050-1234-5678 (운영 시간: 09:00~18:00)</p>
+    </footer>
+
+    <script>
+        // FAQ 아코디언 기능 (접기/펼치기)
+        document.querySelectorAll('dl dt').forEach((dt) => {
+            dt.addEventListener('click', () => {
+                const expanded = dt.getAttribute('aria-expanded') === 'true' || false;
+                dt.setAttribute('aria-expanded', !expanded);
+                dt.classList.toggle('active');
+            });
+            dt.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    dt.click();
+                }
+            });
+        });
+    </script>
+</body>
 </html>
